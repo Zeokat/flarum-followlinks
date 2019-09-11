@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
  
+namespace Zeokat\FollowAutolink;
+
 use Flarum\Extend;
 use s9e\TextFormatter\Configurator;
 
@@ -14,8 +16,12 @@ return [
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->BBCodes->addCustom(
-                '[tooltip="{TEXT1}" placement="{TEXT2}"]{TEXT3}[/tooltip]',
-                '<span class="bb-tooltip" data-tooltip="{TEXT1}" data-placement="{TEXT2}">{TEXT3}</span>'
+                '[INTURL={URL}]{TEXT}[/INTURL]',
+                '<a href="{URL}">{TEXT}</a>'
+            );
+            $config->BBCodes->addCustom(
+                '[INTURLB={URL}]{TEXT}[/INTURLB]',
+                '<a href="{URL}" target="_blank" rel="noopener">{TEXT}</a>'
             );
         })
 ];
